@@ -49,16 +49,18 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 
 ## 🗂️ Estructura del Proyecto
 
+```
 Alquiler-Vehiculos-GT1/
-│
-├── pseudocodigo/
-│   ├── SistemaAlquilerVehiculos.psc
-│   ├── mostrar_vehiculos.psc
-│   ├── estado_vehiculo.psc
-│   └── reserva.psc
-│
-├── README.md
-└── .gitignore
+
+pseudocodigo/
+  SistemaAlquilerVehiculos.psc
+  mostrar_vehiculos.psc
+  estado_vehiculo.psc
+  reserva.psc
+
+README.md
+.gitignore
+```
 
 ## Avance Actual Entrega 1
 
