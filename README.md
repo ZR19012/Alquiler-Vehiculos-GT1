@@ -50,7 +50,7 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 ## 🗂️ Estructura del Proyecto
 
 ```
-Sistema_Alquiler_Vehiculos
+Sistema_Alquiler_Vehiculos/
 
 pseudocodigo/
   SistemaAlquilerVehiculos.psc
