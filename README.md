@@ -49,3 +49,42 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 ---
 
 ## 🗂️ Estructura del Proyecto
+
+Alquiler-Vehiculos-GT1/
+│
+├── pseudocodigo/
+│ ├── SistemaAlquilerVehiculos.psc
+│ ├── mostrar_vehiculos.psc
+│ ├── estado_vehiculo.psc
+│ └── reserva.psc
+│
+├── README.md
+└── .gitignore
+
+## Avance Actual Entrega 1
+
+Actualmente el sistema se encuentra en fase de diseño lógico utilizando pseudocódigo en PSeInt.
+El sistema permite simular el flujo básico de alquiler de vehículos, validando disponibilidad y estado.
+
+Se han implementado los siguientes módulos:
+- Visualización de vehículos
+- Reserva de vehículos
+- Cambio de estado de vehículos
+
+Se ha trabajado con estructuras como:
+- Arreglos
+- Ciclos
+- Condicionales
+- Menú interactivo
+
+## Próxima entrega 
+
+Para la siguiente fase del proyecto se tiene planificado:
+
+- Implementar el sistema en Python
+- Desarrollar un menú funcional en consola
+- Aplicar operaciones CRUD, crear, leer, actualizar, eliminar
+- Validar disponibilidad de vehículos por fechas
+- Mejorar la lógica de negocio del sistema
+
+Esto permitirá pasar del diseño lógico a una aplicación funcional.
