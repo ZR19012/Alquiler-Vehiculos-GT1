@@ -1,4 +1,4 @@
-# 🚗 Sistema de Alquiler de Vehículos
+# Sistema de Alquiler de Vehículos
 
 > Proyecto Final — Lógica de Programación  
 > Ingeniería en Desarrollo de Software
@@ -9,7 +9,7 @@
 
 ---
 
-## 📌 Descripción
+## Descripción
 
 Sistema de gestión de alquiler de vehículos desarrollado como proyecto final de la materia **Lógica de Programación**. La aplicación permite a los clientes realizar reservas de vehículos para rangos de fechas específicos, validando disponibilidad en tiempo real y gestionando el ciclo de vida de cada vehículo.
 
@@ -17,7 +17,7 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 
 ---
 
-## 👥 Integrantes
+## Integrantes
 
 |           Nombre               |               GitHub                     |      Rol      |
 |--------------------------------|------------------------------------------|---------------|
@@ -26,7 +26,7 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 
 ---
 
-## 🎯 Funcionalidades del Sistema
+## Funcionalidades del Sistema
 
 ### Módulos Principales
 
