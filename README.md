@@ -13,7 +13,7 @@
 
 Sistema de gestión de alquiler de vehículos desarrollado como proyecto final de la materia **Lógica de Programación**. La aplicación permite a los clientes realizar reservas de vehículos para rangos de fechas específicos, validando disponibilidad en tiempo real y gestionando el ciclo de vida de cada vehículo.
 
-La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo (PSeInt)**, con una implementación posterior en **Python CLI**.
+La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo PSeInt**, con una implementación posterior en **Python **.
 
 ---
 
