@@ -46,17 +46,16 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
   - 🔴 `Alquilado` — Actualmente en uso por un cliente
   - 🟡 `En Mantenimiento` — No disponible temporalmente
 
----
 
 ## 🗂️ Estructura del Proyecto
 
 Alquiler-Vehiculos-GT1/
 │
 ├── pseudocodigo/
-│ ├── SistemaAlquilerVehiculos.psc
-│ ├── mostrar_vehiculos.psc
-│ ├── estado_vehiculo.psc
-│ └── reserva.psc
+│   ├── SistemaAlquilerVehiculos.psc
+│   ├── mostrar_vehiculos.psc
+│   ├── estado_vehiculo.psc
+│   └── reserva.psc
 │
 ├── README.md
 └── .gitignore
