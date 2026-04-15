@@ -54,10 +54,11 @@ Sistema_Alquiler_Vehiculos/
 
 pseudocodigo/
   SistemaAlquilerVehiculos.psc
-  mostrar_vehiculos.psc
-  estado_vehiculo.psc
-  reserva.psc
-
+  consultar_disponibilidad.psc
+  registrar_nueva_reserva.psc
+  ver todas_las_Reservas.psc
+  cancelar_una_reserva.PSC
+  salir.psc
 README.md
 .gitignore
 ```
