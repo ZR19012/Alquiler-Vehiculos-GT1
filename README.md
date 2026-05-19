@@ -32,7 +32,7 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 |--------                           |-------------|--------|
 | 🔍 **Consulta de Disponibilidad** | Verifica si un vehículo está disponible en un rango de fechas dado | ✅ En Python  |
 | 📅 **Gestión de Reservas**         | Permite crear, consultar y cancelar reservas de clientes | ✅ En Python  |
-| 🚦 **Estados de Vehículos** | Administra los estados: Disponible, Alquilado, En Mantenimiento | ✅ Python  |
+| 🚦 **Estados de Vehículos** | Administra los estados: Disponible, Alquilado, En Mantenimiento | ✅ En Python |
 | 👤 **Gestión de Clientes** | Registro y consulta de información de clientes | 🔄 Planificado |
 
 ### Lógica de Negocio
@@ -55,6 +55,7 @@ Sistema_Alquiler_Vehiculos/
 ├── .gitignore
 └── pseudocodigo/
     └── SistemaAlquilerVehiculos.psc
+```
 
 ## Avance Actual Entrega 1
 
