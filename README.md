@@ -57,7 +57,7 @@ Sistema_Alquiler_Vehiculos/
     └── SistemaAlquilerVehiculos.psc
 ```
 
-## Avance Actual Entrega 1
+## Avance Entrega 1
 
 Actualmente el sistema se encuentra en fase de diseño lógico utilizando pseudocódigo en PSeInt.
 El sistema permite simular el flujo básico de alquiler de vehículos, validando disponibilidad y estado.
@@ -85,7 +85,7 @@ Para la siguiente fase del proyecto se tiene planificado:
 
 Esto permitirá pasar del diseño lógico a una aplicación funcional
 
-## Avance Entrega 2
+## Avance Actual Entrega 2
 
 En esta segunda entrega se realizó la migración inicial del pseudocódigo desarrollado en PSeInt hacia una aplicación funcional en Python por consola
 
