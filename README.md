@@ -47,22 +47,6 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 
 ## 🗂️ Estructura del Proyecto
 
-```
-Sistema_Alquiler_Vehiculos/
-
-pseudocodigo/
-  SistemaAlquilerVehiculos.psc
-  consultar_disponibilidad.psc
-  registrar_nueva_reserva.psc
-  ver todas_las_Reservas.psc
-  cancelar_una_reserva.PSC
-  salir.psc
-README.md
-.gitignore
-```
-
-## 🗂️ Estructura del Proyecto
-
 ```text
 Sistema_Alquiler_Vehiculos/
 │
