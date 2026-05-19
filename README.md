@@ -11,10 +11,9 @@
 
 ## Descripción
 
-Sistema de gestión de alquiler de vehículos desarrollado como proyecto final de la materia **Lógica de Programación**. La aplicación permite a los clientes realizar reservas de vehículos para rangos de fechas específicos, validando disponibilidad en tiempo real y gestionando el ciclo de vida de cada vehículo.
+Sistema de gestión de alquiler de vehículos desarrollado como proyecto final de la materia **Lógica de Programación**. La aplicación permite a los clientes realizar reservas de vehículos para rangos de fechas específicos, validando disponibilidad en tiempo real y gestionando el ciclo de vida de cada vehículo
 
-La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo PSeInt**, con una implementación posterior en **Python **.
-
+La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo PSeInt**, con una implementación posterior en **Python**
 ---
 
 ## Integrantes
@@ -22,8 +21,7 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 |           Nombre               |               GitHub                     |      Rol      |
 |--------------------------------|------------------------------------------|---------------|
 | Josue Emanuel Zúniga Ramírez   |[@ZR19012](https://github.com/ZR19012)    | Desarrollador |
-| Ronald Oswaldo Pérez Santos    |[@PS18039](https://github.com/usuario_compañero) | Desarrollador |
-
+| Ronald Oswaldo Pérez Santos | [@PS18039](https://github.com/PS18039) | Desarrollador |
 ---
 
 ## Funcionalidades del Sistema
@@ -32,9 +30,9 @@ La fase inicial del proyecto presenta la lógica del sistema en **pseudocódigo 
 
 | Módulo                            | Descripción | Estado |
 |--------                           |-------------|--------|
-| 🔍 **Consulta de Disponibilidad** | Verifica si un vehículo está disponible en un rango de fechas dado | ✅ En pseudocódigo |
-| 📅 **Gestión de Reservas**         | Permite crear, consultar y cancelar reservas de clientes | ✅ En pseudocódigo |
-| 🚦 **Estados de Vehículos** | Administra los estados: Disponible, Alquilado, En Mantenimiento | 🔄 Planificado |
+| 🔍 **Consulta de Disponibilidad** | Verifica si un vehículo está disponible en un rango de fechas dado | ✅ En Python  |
+| 📅 **Gestión de Reservas**         | Permite crear, consultar y cancelar reservas de clientes | ✅ En Python  |
+| 🚦 **Estados de Vehículos** | Administra los estados: Disponible, Alquilado, En Mantenimiento | ✅ Python  |
 | 👤 **Gestión de Clientes** | Registro y consulta de información de clientes | 🔄 Planificado |
 
 ### Lógica de Negocio
@@ -63,6 +61,17 @@ README.md
 .gitignore
 ```
 
+## 🗂️ Estructura del Proyecto
+
+```text
+Sistema_Alquiler_Vehiculos/
+│
+├── main.py
+├── README.md
+├── .gitignore
+└── pseudocodigo/
+    └── SistemaAlquilerVehiculos.psc
+
 ## Avance Actual Entrega 1
 
 Actualmente el sistema se encuentra en fase de diseño lógico utilizando pseudocódigo en PSeInt.
@@ -89,7 +98,7 @@ Para la siguiente fase del proyecto se tiene planificado:
 - Validar disponibilidad de vehículos por fechas
 - Mejorar la lógica de negocio del sistema
 
-Esto permitirá pasar del diseño lógico a una aplicación funcional.
+Esto permitirá pasar del diseño lógico a una aplicación funcional
 
 ## Avance Entrega 2
 
@@ -111,5 +120,20 @@ Para esta etapa se utilizaron estructuras básicas de Python como listas, diccio
 2. Descargar o clonar el repositorio
 3. Abrir la carpeta del proyecto en el IDE
 4. Ejecutar el archivo
+
 ```bash
 python main.py
+```
+
+## Pruebas realizadas
+
+- Consulta de disponibilidad de vehículos por fechas
+- Registro de una nueva reserva
+- Visualización de reservas existentes
+- Cancelación de una reserva
+- Validación de fechas incorrectas
+- Validación de vehículos inexistentes
+
+## Estado actual del proyecto
+
+El proyecto se encuentra en una fase funcional inicial. Actualmente ya cuenta con una aplicación por consola en Python que permite demostrar el flujo principal del sistema de alquiler de vehículos. Para próximas entregas se planea mejorar la estructura del código, separar módulos y agregar pruebas unitarias
