@@ -73,7 +73,7 @@ Se ha trabajado con estructuras como:
 - Condicionales
 - Menú interactivo
 
-## Próxima entrega 
+## Próxima entrega 2
 
 Para la siguiente fase del proyecto se tiene planificado:
 
@@ -121,4 +121,18 @@ python main.py
 
 ## Estado actual del proyecto
 
-El proyecto se encuentra en una fase funcional inicial. Actualmente ya cuenta con una aplicación por consola en Python que permite demostrar el flujo principal del sistema de alquiler de vehículos. Para próximas entregas se planea mejorar la estructura del código, separar módulos y agregar pruebas unitarias
+El proyecto se encuentra en una fase funcional inicial. Actualmente ya cuenta con una aplicación por consola en Python que permite demostrar el flujo principal del sistema de alquiler de vehículos. 
+
+## Próxima entrega 3
+
+Para la siguiente fase del proyecto se tiene planificado:
+
+- Mejorar la estructura del proyecto separando módulos en Python
+- Implementar gestión de clientes
+- Agregar actualización de reservas y vehículos
+- Mejorar validaciones y manejo de errores
+- Implementar pruebas unitarias básicas
+- Optimizar la lógica de disponibilidad de vehículos
+- Mejorar la interfaz por consola
+
+Esto permitirá convertir el proyecto en una aplicación más completa, organizada y estable para la entrega final
