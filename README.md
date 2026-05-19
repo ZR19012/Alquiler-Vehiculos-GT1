@@ -90,3 +90,26 @@ Para la siguiente fase del proyecto se tiene planificado:
 - Mejorar la lógica de negocio del sistema
 
 Esto permitirá pasar del diseño lógico a una aplicación funcional.
+
+## Avance Entrega 2
+
+En esta segunda entrega se realizó la migración inicial del pseudocódigo desarrollado en PSeInt hacia una aplicación funcional en Python por consola
+
+El sistema actualmente permite
+
+- Consultar vehículos disponibles por rango de fechas
+- Registrar nuevas reservas
+- Ver todas las reservas registradas
+- Cancelar reservas existentes
+- Visualizar el listado de vehículos y sus estados
+
+Para esta etapa se utilizaron estructuras básicas de Python como listas, diccionarios, funciones, condicionales, ciclos y manejo básico de errores
+
+## Cómo ejecutar el programa
+
+1. Tener instalado Python 3
+2. Descargar o clonar el repositorio
+3. Abrir la carpeta del proyecto en el IDE
+4. Ejecutar el archivo
+```bash
+python main.py
