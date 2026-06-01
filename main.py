@@ -39,8 +39,12 @@ def menu():
 
         elif opcion == "3":
             print("\n--- NUEVA RESERVA ---")
-            cliente      = input("Nombre del cliente: ").strip()
-            id_vehiculo  = int(input("ID del vehículo: "))
+            cliente = input("Nombre del cliente: ").strip()
+            try:
+                id_vehiculo = int(input("ID del vehículo: ").strip())
+            except ValueError:
+                print("ERROR: El ID debe ser un número entero.")
+                continue
             fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
             fecha_fin    = input("Fecha de fin    (YYYY-MM-DD): ").strip()
             crear_reserva(id_vehiculo, cliente, fecha_inicio, fecha_fin)
@@ -50,7 +54,11 @@ def menu():
 
         elif opcion == "5":
             listar_reservas()
-            id_reserva = int(input("\nNúmero de reserva a cancelar: "))
+            try:
+                id_reserva = int(input("\nNúmero de reserva a cancelar: ").strip())
+            except ValueError:
+                print("ERROR: El número de reserva debe ser un entero.")
+                continue
             cancelar_reserva(id_reserva)
 
         elif opcion == "6":
@@ -59,6 +67,5 @@ def menu():
 
         else:
             print("Opción inválida. Intente de nuevo.")
-
 if __name__ == "__main__":
     menu()
