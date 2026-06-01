@@ -1,0 +1,49 @@
+from database import get_connection
+
+def listar_vehiculos():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, marca, modelo, estado FROM vehiculos")
+    vehiculos = cursor.fetchall()
+    conn.close()
+
+    print("\n--- LISTADO DE VEHÍCULOS ---")
+    print(f"{'ID':<6} {'Marca':<10} {'Modelo':<12} {'Estado'}")
+    print("-" * 42)
+    for v in vehiculos:
+        print(f"{v['id']:<6} {v['marca']:<10} {v['modelo']:<12} {v['estado']}")
+    print("-" * 42)
+
+def consultar_disponibilidad(fecha_inicio, fecha_fin):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT v.id, v.marca, v.modelo
+        FROM vehiculos v
+        WHERE v.estado = 'Disponible'
+        AND v.id NOT IN (
+            SELECT r.id_vehiculo FROM reservas r
+            WHERE NOT (r.fecha_fin < ? OR r.fecha_inicio > ?)
+        )
+    """, (fecha_inicio, fecha_fin))
+    disponibles = cursor.fetchall()
+    conn.close()
+    return disponibles
+
+def actualizar_estado(id_vehiculo, nuevo_estado):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "UPDATE vehiculos SET estado = ? WHERE id = ?",
+        (nuevo_estado, id_vehiculo)
+    )
+    conn.commit()
+    conn.close()
+
+def buscar_vehiculo(id_vehiculo):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM vehiculos WHERE id = ?", (id_vehiculo,))
+    vehiculo = cursor.fetchone()
+    conn.close()
+    return vehiculo
