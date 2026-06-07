@@ -1,5 +1,6 @@
 # main.py
 import os
+from datetime import datetime
 
 from database import inicializar_db
 from vehiculos import listar_vehiculos, consultar_disponibilidad
@@ -12,6 +13,14 @@ def limpiar_pantalla():
 
 def pausa():
     input("\nPresione Enter para continuar...")
+
+
+def validar_fecha(fecha):
+    try:
+        datetime.strptime(fecha, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
 
 
 def menu():
@@ -45,6 +54,11 @@ def menu():
             fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
             fecha_fin = input("Fecha de fin    (YYYY-MM-DD): ").strip()
 
+            if not validar_fecha(fecha_inicio) or not validar_fecha(fecha_fin):
+                print("\nERROR: Formato de fecha inválido. Use YYYY-MM-DD.")
+                pausa()
+                continue
+
             disponibles = consultar_disponibilidad(fecha_inicio, fecha_fin)
 
             print("\n-----------------------------------------")
@@ -71,6 +85,11 @@ def menu():
 
             fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
             fecha_fin = input("Fecha de fin    (YYYY-MM-DD): ").strip()
+
+            if not validar_fecha(fecha_inicio) or not validar_fecha(fecha_fin):
+                print("\nERROR: Formato de fecha inválido. Use YYYY-MM-DD.")
+                pausa()
+                continue
 
             crear_reserva(id_vehiculo, cliente, fecha_inicio, fecha_fin)
             pausa()
