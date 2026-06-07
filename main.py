@@ -1,12 +1,25 @@
 # main.py
+import os
+
 from database import inicializar_db
 from vehiculos import listar_vehiculos, consultar_disponibilidad
 from reservas import crear_reserva, listar_reservas, cancelar_reserva
+
+
+def limpiar_pantalla():
+    os.system("cls")
+
+
+def pausa():
+    input("\nPresione Enter para continuar...")
+
 
 def menu():
     inicializar_db()
 
     while True:
+        limpiar_pantalla()
+
         print("\n=========================================")
         print("    SISTEMA DE ALQUILER DE VEHÍCULOS")
         print("=========================================")
@@ -21,13 +34,19 @@ def menu():
         opcion = input("Seleccione una opción: ").strip()
 
         if opcion == "1":
+            limpiar_pantalla()
+            print("\n--- LISTA DE VEHÍCULOS ---")
             listar_vehiculos()
+            pausa()
 
         elif opcion == "2":
+            limpiar_pantalla()
             print("\n--- CONSULTAR DISPONIBILIDAD ---")
             fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
-            fecha_fin    = input("Fecha de fin    (YYYY-MM-DD): ").strip()
-            disponibles  = consultar_disponibilidad(fecha_inicio, fecha_fin)
+            fecha_fin = input("Fecha de fin    (YYYY-MM-DD): ").strip()
+
+            disponibles = consultar_disponibilidad(fecha_inicio, fecha_fin)
+
             print("\n-----------------------------------------")
             if disponibles:
                 print("  Vehículos disponibles:")
@@ -36,36 +55,55 @@ def menu():
             else:
                 print("  No hay vehículos disponibles en esas fechas.")
             print("-----------------------------------------")
+            pausa()
 
         elif opcion == "3":
+            limpiar_pantalla()
             print("\n--- NUEVA RESERVA ---")
             cliente = input("Nombre del cliente: ").strip()
+
             try:
                 id_vehiculo = int(input("ID del vehículo: ").strip())
             except ValueError:
                 print("ERROR: El ID debe ser un número entero.")
+                pausa()
                 continue
+
             fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
-            fecha_fin    = input("Fecha de fin    (YYYY-MM-DD): ").strip()
+            fecha_fin = input("Fecha de fin    (YYYY-MM-DD): ").strip()
+
             crear_reserva(id_vehiculo, cliente, fecha_inicio, fecha_fin)
+            pausa()
 
         elif opcion == "4":
+            limpiar_pantalla()
+            print("\n--- LISTA DE RESERVAS ---")
             listar_reservas()
+            pausa()
 
         elif opcion == "5":
+            limpiar_pantalla()
+            print("\n--- CANCELAR RESERVA ---")
             listar_reservas()
+
             try:
                 id_reserva = int(input("\nNúmero de reserva a cancelar: ").strip())
             except ValueError:
                 print("ERROR: El número de reserva debe ser un entero.")
+                pausa()
                 continue
+
             cancelar_reserva(id_reserva)
+            pausa()
 
         elif opcion == "6":
-            print("Saliendo del sistema. ¡Hasta luego!")
+            print("\nSaliendo del sistema. ¡Hasta luego!")
             break
 
         else:
-            print("Opción inválida. Intente de nuevo.")
+            print("\nOpción inválida. Intente de nuevo.")
+            pausa()
+
+
 if __name__ == "__main__":
     menu()
