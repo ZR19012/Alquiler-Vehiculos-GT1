@@ -47,3 +47,21 @@ def buscar_vehiculo(id_vehiculo):
     vehiculo = cursor.fetchone()
     conn.close()
     return vehiculo
+
+def agregar_vehiculo(marca, modelo):
+    """Agrega un nuevo vehículo al sistema."""
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # Generar ID automático (el mayor ID existente + 1)
+    cursor.execute("SELECT MAX(id) FROM vehiculos")
+    resultado = cursor.fetchone()[0]
+    nuevo_id = (resultado + 1) if resultado else 101
+
+    cursor.execute(
+        "INSERT INTO vehiculos (id, marca, modelo, estado) VALUES (?, ?, ?, ?)",
+        (nuevo_id, marca, modelo, "Disponible")
+    )
+    conn.commit()
+    conn.close()
+    print(f"✔ Vehículo agregado exitosamente con ID {nuevo_id}.")

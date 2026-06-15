@@ -1,9 +1,8 @@
 # main.py
 import os
 from datetime import datetime
-
 from database import inicializar_db
-from vehiculos import listar_vehiculos, consultar_disponibilidad
+from vehiculos import listar_vehiculos, consultar_disponibilidad, agregar_vehiculo
 from reservas import crear_reserva, listar_reservas, cancelar_reserva
 
 
@@ -37,7 +36,8 @@ def menu():
         print("  3. Registrar nueva reserva")
         print("  4. Ver todas las reservas")
         print("  5. Cancelar una reserva")
-        print("  6. Salir")
+        print("  6. Agregar nuevo vehículo")
+        print("  7. Salir")
         print("-----------------------------------------")
 
         opcion = input("Seleccione una opción: ").strip()
@@ -116,6 +116,17 @@ def menu():
             pausa()
 
         elif opcion == "6":
+            limpiar_pantalla()
+            print("\n--- AGREGAR NUEVO VEHÍCULO ---")
+            marca = input("Marca del vehículo: ").strip()
+            modelo = input("Modelo del vehículo: ").strip()
+            if not marca or not modelo:
+                print("ERROR: La marca y el modelo no pueden estar vacíos.")
+            else:
+                agregar_vehiculo(marca, modelo)
+            pausa()
+
+        elif opcion == "7":
             print("\nSaliendo del sistema. ¡Hasta luego!")
             break
 
