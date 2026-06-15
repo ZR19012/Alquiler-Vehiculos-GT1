@@ -2,7 +2,7 @@
 import os
 from datetime import datetime
 from database import inicializar_db
-from vehiculos import listar_vehiculos, consultar_disponibilidad, agregar_vehiculo
+from vehiculos import listar_vehiculos, consultar_disponibilidad, agregar_vehiculo, eliminar_vehiculo
 from reservas import crear_reserva, listar_reservas, cancelar_reserva
 
 
@@ -37,7 +37,8 @@ def menu():
         print("  4. Ver todas las reservas")
         print("  5. Cancelar una reserva")
         print("  6. Agregar nuevo vehículo")
-        print("  7. Salir")
+        print("  7. Eliminar un vehículo")
+        print("  8. Salir")
         print("-----------------------------------------")
 
         opcion = input("Seleccione una opción: ").strip()
@@ -127,6 +128,19 @@ def menu():
             pausa()
 
         elif opcion == "7":
+            limpiar_pantalla()
+            print("\n--- ELIMINAR VEHÍCULO ---")
+            listar_vehiculos()
+            try:
+                id_vehiculo = int(input("\nID del vehículo a eliminar: ").strip())
+            except ValueError:
+                print("ERROR: El ID debe ser un número entero.")
+                pausa()
+                continue
+            eliminar_vehiculo(id_vehiculo)
+            pausa()
+
+        elif opcion == "8":
             print("\nSaliendo del sistema. ¡Hasta luego!")
             break
 

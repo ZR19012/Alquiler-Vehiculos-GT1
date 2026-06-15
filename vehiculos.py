@@ -65,3 +65,31 @@ def agregar_vehiculo(marca, modelo):
     conn.commit()
     conn.close()
     print(f"✔ Vehículo agregado exitosamente con ID {nuevo_id}.")
+
+def eliminar_vehiculo(id_vehiculo):
+    """Elimina un vehículo solo si no tiene reservas activas."""
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    # Verificar que el vehículo existe
+    cursor.execute("SELECT * FROM vehiculos WHERE id = ?", (id_vehiculo,))
+    vehiculo = cursor.fetchone()
+
+    if not vehiculo:
+        print("ERROR: Vehículo no encontrado.")
+        conn.close()
+        return
+
+    # Verificar que no tenga reservas activas
+    cursor.execute("SELECT COUNT(*) FROM reservas WHERE id_vehiculo = ?", (id_vehiculo,))
+    total_reservas = cursor.fetchone()[0]
+
+    if total_reservas > 0:
+        print(f"ERROR: No se puede eliminar. El vehículo tiene {total_reservas} reserva(s) activa(s).")
+        conn.close()
+        return
+
+    cursor.execute("DELETE FROM vehiculos WHERE id = ?", (id_vehiculo,))
+    conn.commit()
+    conn.close()
+    print(f"✔ Vehículo ID {id_vehiculo} eliminado exitosamente.")
