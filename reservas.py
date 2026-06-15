@@ -74,3 +74,31 @@ def cancelar_reserva(id_reserva):
 
     actualizar_estado(reserva["id_vehiculo"], "Disponible")
     print("✔ Reserva cancelada. Vehículo liberado.")
+
+def buscar_reservas_por_cliente(nombre_cliente):
+    """Busca todas las reservas de un cliente por su nombre."""
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT r.id, r.cliente, v.marca, v.modelo, r.fecha_inicio, r.fecha_fin
+        FROM reservas r
+        JOIN vehiculos v ON r.id_vehiculo = v.id
+        WHERE LOWER(r.cliente) LIKE LOWER(?)
+    """, (f"%{nombre_cliente}%",))
+
+    reservas = cursor.fetchall()
+    conn.close()
+
+    print(f"\n--- RESERVAS PARA: '{nombre_cliente}' ---")
+    if not reservas:
+        print("  No se encontraron reservas para ese cliente.")
+        return
+
+    for r in reservas:
+        print(f"  Reserva #{r['id']}")
+        print(f"    Cliente  : {r['cliente']}")
+        print(f"    Vehículo : {r['marca']} {r['modelo']}")
+        print(f"    Desde    : {r['fecha_inicio']}")
+        print(f"    Hasta    : {r['fecha_fin']}")
+        print("  -------------------------")

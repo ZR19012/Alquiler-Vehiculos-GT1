@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from database import inicializar_db
 from vehiculos import listar_vehiculos, consultar_disponibilidad, agregar_vehiculo, eliminar_vehiculo
-from reservas import crear_reserva, listar_reservas, cancelar_reserva
+from reservas import crear_reserva, listar_reservas, cancelar_reserva, buscar_reservas_por_cliente
 
 
 def limpiar_pantalla():
@@ -38,7 +38,8 @@ def menu():
         print("  5. Cancelar una reserva")
         print("  6. Agregar nuevo vehículo")
         print("  7. Eliminar un vehículo")
-        print("  8. Salir")
+        print("  8. Buscar reservas por cliente")
+        print("  9. Salir")
         print("-----------------------------------------")
 
         opcion = input("Seleccione una opción: ").strip()
@@ -141,6 +142,16 @@ def menu():
             pausa()
 
         elif opcion == "8":
+            limpiar_pantalla()
+            print("\n--- BUSCAR RESERVAS POR CLIENTE ---")
+            nombre = input("Nombre del cliente a buscar: ").strip()
+            if not nombre:
+                print("ERROR: El nombre no puede estar vacío.")
+            else:
+                buscar_reservas_por_cliente(nombre)
+            pausa()
+
+        elif opcion == "93":
             print("\nSaliendo del sistema. ¡Hasta luego!")
             break
 
