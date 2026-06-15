@@ -223,3 +223,15 @@ La base de datos se genera automáticamente al ejecutar el sistema.
 
 Actualmente el sistema se encuentra en una fase funcional avanzada, permitiendo gestionar reservas, disponibilidad, estados de vehículos, costos y reportes mediante una aplicación desarrollada en Python por consola.
 
+## Pruebas Unitarias
+
+Se implementaron pruebas unitarias básicas utilizando el módulo unittest de Python.
+
+Las pruebas verifican:
+
+- Consulta de disponibilidad de vehículos
+- Respuesta correcta del sistema
+- Validación del tipo de datos retornado
+
+Archivo de prueba:
+- prueba_vehiculos.py
