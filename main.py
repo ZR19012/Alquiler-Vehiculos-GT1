@@ -1,9 +1,20 @@
-# main.py
 import os
 from datetime import datetime
 from database import inicializar_db
-from vehiculos import listar_vehiculos, consultar_disponibilidad, agregar_vehiculo, eliminar_vehiculo
-from reservas import crear_reserva, listar_reservas, cancelar_reserva, buscar_reservas_por_cliente
+from vehiculos import (
+    listar_vehiculos,
+    consultar_disponibilidad,
+    agregar_vehiculo,
+    eliminar_vehiculo,
+    cambiar_estado_vehiculo
+)
+from reservas import (
+    crear_reserva,
+    listar_reservas,
+    cancelar_reserva,
+    buscar_reservas_por_cliente
+)
+from reportes import menu_reportes
 
 
 def limpiar_pantalla():
@@ -22,24 +33,32 @@ def validar_fecha(fecha):
         return False
 
 
+def validar_rango_fechas(fecha_inicio, fecha_fin):
+    inicio = datetime.strptime(fecha_inicio, "%Y-%m-%d")
+    fin = datetime.strptime(fecha_fin, "%Y-%m-%d")
+    return fin >= inicio
+
+
 def menu():
     inicializar_db()
 
     while True:
         limpiar_pantalla()
 
-        print("\n=========================================")
+        print("=========================================")
         print("    SISTEMA DE ALQUILER DE VEHÍCULOS")
         print("=========================================")
-        print("  1. Ver todos los vehículos")
-        print("  2. Consultar disponibilidad")
-        print("  3. Registrar nueva reserva")
-        print("  4. Ver todas las reservas")
-        print("  5. Cancelar una reserva")
-        print("  6. Agregar nuevo vehículo")
-        print("  7. Eliminar un vehículo")
-        print("  8. Buscar reservas por cliente")
-        print("  9. Salir")
+        print("1. Ver todos los vehículos")
+        print("2. Consultar disponibilidad")
+        print("3. Registrar nueva reserva")
+        print("4. Ver todas las reservas")
+        print("5. Cancelar una reserva")
+        print("6. Agregar nuevo vehículo")
+        print("7. Eliminar un vehículo")
+        print("8. Buscar reservas por cliente")
+        print("9. Cambiar estado de vehículo")
+        print("10. Reportes")
+        print("11. Salir")
         print("-----------------------------------------")
 
         opcion = input("Seleccione una opción: ").strip()
@@ -53,43 +72,64 @@ def menu():
         elif opcion == "2":
             limpiar_pantalla()
             print("\n--- CONSULTAR DISPONIBILIDAD ---")
+
             fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
-            fecha_fin = input("Fecha de fin    (YYYY-MM-DD): ").strip()
+            fecha_fin = input("Fecha de fin (YYYY-MM-DD): ").strip()
 
             if not validar_fecha(fecha_inicio) or not validar_fecha(fecha_fin):
-                print("\nERROR: Formato de fecha inválido. Use YYYY-MM-DD.")
+                print("\nERROR: Formato de fecha inválido.")
+                pausa()
+                continue
+
+            if not validar_rango_fechas(fecha_inicio, fecha_fin):
+                print("\nERROR: La fecha final no puede ser menor.")
                 pausa()
                 continue
 
             disponibles = consultar_disponibilidad(fecha_inicio, fecha_fin)
 
-            print("\n-----------------------------------------")
+            print("\nVehículos disponibles:\n")
+
             if disponibles:
-                print("  Vehículos disponibles:")
                 for v in disponibles:
-                    print(f"  ID: {v['id']} | {v['marca']} {v['modelo']}")
+                    print(
+                        f"ID: {v['id']} | "
+                        f"{v['marca']} {v['modelo']} | "
+                        f"${v['precio_dia']:.2f} por día"
+                    )
             else:
-                print("  No hay vehículos disponibles en esas fechas.")
-            print("-----------------------------------------")
+                print("No hay vehículos disponibles.")
+
             pausa()
 
         elif opcion == "3":
             limpiar_pantalla()
             print("\n--- NUEVA RESERVA ---")
+
             cliente = input("Nombre del cliente: ").strip()
+
+            if not cliente:
+                print("ERROR: El nombre no puede estar vacío.")
+                pausa()
+                continue
 
             try:
                 id_vehiculo = int(input("ID del vehículo: ").strip())
             except ValueError:
-                print("ERROR: El ID debe ser un número entero.")
+                print("ERROR: El ID debe ser numérico.")
                 pausa()
                 continue
 
             fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ").strip()
-            fecha_fin = input("Fecha de fin    (YYYY-MM-DD): ").strip()
+            fecha_fin = input("Fecha de fin (YYYY-MM-DD): ").strip()
 
             if not validar_fecha(fecha_inicio) or not validar_fecha(fecha_fin):
-                print("\nERROR: Formato de fecha inválido. Use YYYY-MM-DD.")
+                print("\nERROR: Formato de fecha inválido.")
+                pausa()
+                continue
+
+            if not validar_rango_fechas(fecha_inicio, fecha_fin):
+                print("\nERROR: La fecha final no puede ser menor.")
                 pausa()
                 continue
 
@@ -110,7 +150,7 @@ def menu():
             try:
                 id_reserva = int(input("\nNúmero de reserva a cancelar: ").strip())
             except ValueError:
-                print("ERROR: El número de reserva debe ser un entero.")
+                print("ERROR: Debe ingresar un número.")
                 pausa()
                 continue
 
@@ -119,44 +159,103 @@ def menu():
 
         elif opcion == "6":
             limpiar_pantalla()
-            print("\n--- AGREGAR NUEVO VEHÍCULO ---")
-            marca = input("Marca del vehículo: ").strip()
-            modelo = input("Modelo del vehículo: ").strip()
+            print("\n--- AGREGAR VEHÍCULO ---")
+
+            marca = input("Marca: ").strip()
+            modelo = input("Modelo: ").strip()
+
             if not marca or not modelo:
-                print("ERROR: La marca y el modelo no pueden estar vacíos.")
-            else:
-                agregar_vehiculo(marca, modelo)
+                print("ERROR: No deje campos vacíos.")
+                pausa()
+                continue
+
+            try:
+                precio_dia = float(input("Precio por día: $").strip())
+            except ValueError:
+                print("ERROR: El precio debe ser numérico.")
+                pausa()
+                continue
+
+            if precio_dia <= 0:
+                print("ERROR: El precio debe ser mayor a cero.")
+                pausa()
+                continue
+
+            agregar_vehiculo(marca, modelo, precio_dia)
             pausa()
 
         elif opcion == "7":
             limpiar_pantalla()
             print("\n--- ELIMINAR VEHÍCULO ---")
             listar_vehiculos()
+
             try:
                 id_vehiculo = int(input("\nID del vehículo a eliminar: ").strip())
             except ValueError:
-                print("ERROR: El ID debe ser un número entero.")
+                print("ERROR: El ID debe ser numérico.")
                 pausa()
                 continue
+
             eliminar_vehiculo(id_vehiculo)
             pausa()
 
         elif opcion == "8":
             limpiar_pantalla()
             print("\n--- BUSCAR RESERVAS POR CLIENTE ---")
+
             nombre = input("Nombre del cliente a buscar: ").strip()
+
             if not nombre:
                 print("ERROR: El nombre no puede estar vacío.")
             else:
                 buscar_reservas_por_cliente(nombre)
+
             pausa()
 
-        elif opcion == "93":
+        elif opcion == "9":
+            limpiar_pantalla()
+            print("\n--- CAMBIAR ESTADO DE VEHÍCULO ---")
+
+            listar_vehiculos()
+
+            try:
+                id_vehiculo = int(input("\nID del vehículo: ").strip())
+            except ValueError:
+                print("ERROR: El ID debe ser numérico.")
+                pausa()
+                continue
+
+            print("\nEstados disponibles:")
+            print("1. Disponible")
+            print("2. Alquilado")
+            print("3. En Mantenimiento")
+
+            opcion_estado = input("Seleccione el nuevo estado: ").strip()
+
+            if opcion_estado == "1":
+                nuevo_estado = "Disponible"
+            elif opcion_estado == "2":
+                nuevo_estado = "Alquilado"
+            elif opcion_estado == "3":
+                nuevo_estado = "En Mantenimiento"
+            else:
+                print("ERROR: Estado inválido.")
+                pausa()
+                continue
+
+            cambiar_estado_vehiculo(id_vehiculo, nuevo_estado)
+            pausa()
+
+        elif opcion == "10":
+            limpiar_pantalla()
+            menu_reportes()
+
+        elif opcion == "11":
             print("\nSaliendo del sistema. ¡Hasta luego!")
             break
 
         else:
-            print("\nOpción inválida. Intente de nuevo.")
+            print("\nOpción inválida. Intente nuevamente.")
             pausa()
 
 
