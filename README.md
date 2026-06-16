@@ -136,3 +136,102 @@ Para la siguiente fase del proyecto se tiene planificado:
 - Mejorar la interfaz por consola
 
 Esto permitirá convertir el proyecto en una aplicación más completa, organizada y estable para la entrega final
+
+# ENTREGA FINAL
+## Nuevas funcionalidades implementadas
+
+En la versión actual del sistema se agregaron nuevas mejoras funcionales para fortalecer la lógica de negocio y mejorar la experiencia de uso del sistema.
+
+### Mejoras implementadas
+
+* Gestión dinámica de estados de vehículos
+* Módulo de reportes
+* Cálculo automático de costos de reserva
+* Gestión de precios por día para cada vehículo
+* Validaciones avanzadas de fechas y datos de entrada
+* Persistencia de datos utilizando SQLite
+* Organización modular del proyecto en Python
+
+### Nuevos módulos incorporados
+
+| Módulo                   | Descripción                                                 |
+| ------------------------ | ----------------------------------------------------------- |
+| 💰 Gestión de Precios    | Cada vehículo posee un precio de alquiler por día           |
+| 📊 Reportes              | Permite visualizar reportes de reservas, ingresos y estados |
+| 🛠️ Mantenimiento        | Permite cambiar estados de vehículos manualmente            |
+| 🗄️ Base de Datos SQLite | Persistencia de información del sistema                     |
+
+## Estructura actual del proyecto
+
+```text
+Alquiler-Vehiculos-GT1/
+│
+├── main.py
+├── database.py
+├── vehiculos.py
+├── reservas.py
+├── reportes.py
+├── README.md
+├── .gitignore
+├── data/
+│   └── alquiler.db
+│
+└── pseudocodigo/
+    └── SistemaAlquilerVehiculos.psc
+```
+
+## Tecnologías utilizadas
+
+* Python 3
+* SQLite
+* PSeInt
+* Git y GitHub
+
+## Funcionalidades actuales del sistema
+
+* Visualización de vehículos
+* Gestión de estados
+* Registro de reservas
+* Cancelación de reservas
+* Consulta de disponibilidad
+* Gestión de mantenimiento
+* Cálculo automático de costos
+* Reportes generales
+* Reporte de ingresos
+* Persistencia de datos
+
+## Reportes disponibles
+
+El sistema actualmente permite generar:
+
+* Reporte de vehículos por estado
+* Reporte general de reservas
+* Reporte total de ingresos
+
+## Base de datos
+
+El sistema utiliza SQLite para almacenar la información de:
+
+* Vehículos
+* Reservas
+* Estados
+* Totales de alquiler
+
+La base de datos se genera automáticamente al ejecutar el sistema.
+
+## Estado actual del proyecto
+
+Actualmente el sistema se encuentra en una fase funcional avanzada, permitiendo gestionar reservas, disponibilidad, estados de vehículos, costos y reportes mediante una aplicación desarrollada en Python por consola.
+
+## Pruebas Unitarias
+
+Se implementaron pruebas unitarias básicas utilizando el módulo unittest de Python.
+
+Las pruebas verifican:
+
+- Consulta de disponibilidad de vehículos
+- Respuesta correcta del sistema
+- Validación del tipo de datos retornado
+
+Archivo de prueba:
+- prueba_vehiculos.py
