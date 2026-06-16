@@ -2,7 +2,7 @@
 import os
 from datetime import datetime
 from database import inicializar_db
-from vehiculos import listar_vehiculos, consultar_disponibilidad, agregar_vehiculo, eliminar_vehiculo
+from vehiculos import listar_vehiculos, consultar_disponibilidad, agregar_vehiculo, eliminar_vehiculo, cambiar_estado_vehiculo
 from reservas import crear_reserva, listar_reservas, cancelar_reserva, buscar_reservas_por_cliente
 
 
@@ -39,7 +39,8 @@ def menu():
         print("  6. Agregar nuevo vehículo")
         print("  7. Eliminar un vehículo")
         print("  8. Buscar reservas por cliente")
-        print("  9. Salir")
+        print("  9. Cambiar estado de un vehículo")
+        print("  0. Salir")
         print("-----------------------------------------")
 
         opcion = input("Seleccione una opción: ").strip()
@@ -151,7 +152,36 @@ def menu():
                 buscar_reservas_por_cliente(nombre)
             pausa()
 
-        elif opcion == "93":
+        elif opcion == "9":
+            limpiar_pantalla()
+            print("\n--- CAMBIAR ESTADO DE VEHÍCULO ---")
+            listar_vehiculos()
+            try:
+                id_vehiculo = int(input("\nID del vehículo: ").strip())
+            except ValueError:
+                print("ERROR: El ID debe ser un número entero.")
+                pausa()
+                continue
+
+            print("\n  Estados disponibles:")
+            print("  1. Disponible")
+            print("  2. Alquilado")
+            print("  3. En Mantenimiento")
+            opcion_estado = input("\nSeleccione el nuevo estado (1-3): ").strip()
+
+            estados = {
+                "1": "Disponible",
+                "2": "Alquilado",
+                "3": "En Mantenimiento"
+            }
+
+            if opcion_estado not in estados:
+                print("ERROR: Opción inválida.")
+            else:
+                cambiar_estado_vehiculo(id_vehiculo, estados[opcion_estado])
+            pausa()
+
+        elif opcion == "0":
             print("\nSaliendo del sistema. ¡Hasta luego!")
             break
 

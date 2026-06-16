@@ -93,3 +93,35 @@ def eliminar_vehiculo(id_vehiculo):
     conn.commit()
     conn.close()
     print(f"✔ Vehículo ID {id_vehiculo} eliminado exitosamente.")
+
+def cambiar_estado_vehiculo(id_vehiculo, nuevo_estado):
+    """Cambia el estado de un vehículo manualmente."""
+    estados_validos = ["Disponible", "Alquilado", "En Mantenimiento"]
+
+    if nuevo_estado not in estados_validos:
+        print(f"ERROR: Estado inválido. Los estados válidos son: {', '.join(estados_validos)}")
+        return
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM vehiculos WHERE id = ?", (id_vehiculo,))
+    vehiculo = cursor.fetchone()
+
+    if not vehiculo:
+        print("ERROR: Vehículo no encontrado.")
+        conn.close()
+        return
+
+    if vehiculo["estado"] == nuevo_estado:
+        print(f"INFO: El vehículo ya tiene el estado '{nuevo_estado}'.")
+        conn.close()
+        return
+
+    cursor.execute(
+        "UPDATE vehiculos SET estado = ? WHERE id = ?",
+        (nuevo_estado, id_vehiculo)
+    )
+    conn.commit()
+    conn.close()
+    print(f"✔ Estado del vehículo ID {id_vehiculo} actualizado a '{nuevo_estado}'.")
